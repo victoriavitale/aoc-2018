@@ -1,0 +1,7 @@
+[package]
+name = "AoC"
+version = "0.1.0"
+authors = ["Victoria Vitale <victoria@mural.co>"]
+edition = "2018"
+
+[dependencies]
