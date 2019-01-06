@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -24,17 +23,12 @@ fn find_pair(input: String) -> (String, String) {
 }
 
 fn diff_by_one(fst: &str, snd: &str) -> bool {
-    let mut count = 0;
-    for (f, s) in fst.chars().zip(snd.chars()) {
+    fst.chars().zip(snd.chars()).scan(0, |cnt, (f, s)| {
         if f != s {
-            count += 1;
-            if count == 2 {
-                return false;
-            }
+            *cnt += 1;
         }
-    }
-
-    return true;
+        Some(*cnt)
+    }).all(|x| x <= 1)
 }
 
 #[cfg(test)]
