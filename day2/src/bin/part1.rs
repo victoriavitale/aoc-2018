@@ -12,18 +12,18 @@ fn main() {
     let mut triplets = 0;
 
     for val in input.split("\n") {
-        if hasRepeated(&val, 2) { pairs += 1 }
-        if hasRepeated(&val, 3) { triplets += 1 }
+        if has_repeated(&val, 2) { pairs += 1 }
+        if has_repeated(&val, 3) { triplets += 1 }
     }
 
     println! ("{}", checksum = pairs * triplets)
 }
 
-pub fn hasRepeated(boxId: &str, k: u32) -> bool {
+pub fn has_repeated(box_id: &str, k: u32) -> bool {
  
     let mut counts:HashMap<char, u32> = HashMap::new();
         
-    for c in boxId.chars() {
+    for c in box_id.chars() {
         let n = match counts.get(&c) {
             Some(&v) => v + 1,
             None => 1
@@ -45,22 +45,22 @@ mod tests {
     use crate::*;
     #[test]
     fn has_none() {
-        assert_eq!(hasRepeated("abcdef", 2), false);
-        assert_eq!(hasRepeated("abcdef", 3), false);
+        assert_eq!(has_repeated("abcdef", 2), false);
+        assert_eq!(has_repeated("abcdef", 3), false);
     }
     #[test]
     fn has_pair() {
-        assert_eq!(hasRepeated("baxabc", 2), true);
-        assert_eq!(hasRepeated("baxabc", 3), false);
+        assert_eq!(has_repeated("baxabc", 2), true);
+        assert_eq!(has_repeated("baxabc", 3), false);
     }
     #[test]
     fn has_triplet() {
-        assert_eq!(hasRepeated("babxbc", 3), true);
-        assert_eq!(hasRepeated("babxbc", 2), false);
+        assert_eq!(has_repeated("babxbc", 3), true);
+        assert_eq!(has_repeated("babxbc", 2), false);
     }
     #[test]
     fn has_both() {
-        assert_eq!(hasRepeated("bababc", 2), true);
-        assert_eq!(hasRepeated("bababc", 3), true);
+        assert_eq!(has_repeated("bababc", 2), true);
+        assert_eq!(has_repeated("bababc", 3), true);
     }
 }
